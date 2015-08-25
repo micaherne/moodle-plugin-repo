@@ -12,11 +12,11 @@ The plugins are exposed as moodle-plugin-db/plugin_name, and the versions are th
         "repositories": [
           {
             "type": "git",
-            "url": "C:/dev/htdocs/moodle-plugin-repo-installer"
+            "url": "https://github.com/micaherne/moodle-plugin-repo-installer.git"
           },
           {
             "type": "composer",
-            "url": "http://localhost/moodle-plugin-repo"
+            "url": "http://micaherne.github.io/moodle-plugin-repo/"
           },
           {
             "packagist": false
