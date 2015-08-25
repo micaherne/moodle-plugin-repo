@@ -1,0 +1,15 @@
+{
+    "name": "michael/moodle-plugin-repo",
+    "description": "A composer repository generator for the Moodle plugin database",
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Michael Aherne",
+            "email": "micaherne@blueyonder.co.uk"
+        }
+    ],
+    "require": {}
+}
