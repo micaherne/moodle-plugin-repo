@@ -37,3 +37,4 @@ The plugins are exposed as moodle-plugin-db/plugin_name, and the versions are th
 3. Where a plugin has a Github repository which could be used by Composer, we're not using it
 4. We have to use a custom installer to get the plugin into the right directory (which is one of the reasons #3 doesn't work)
 5. To install into an existing Moodle download (which is kind of the idea), you need to edit the composer.json file, which is a core Moodle file. Alternatively, you need to mess around with the COMPOSER environment variable to use a different filename
+6. There's no actual dependency management, so you have to work out the relevant versions yourself
