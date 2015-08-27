@@ -22,6 +22,11 @@ $repo = new stdClass();
 $repo->packages = [];
 
 foreach ($pluginlist->plugins as $key => $plugin) {
+  if (empty($plugin->component)) {
+      // We can't do anything without a component
+      continue;
+  }
+  list($plugintype, $pluginname) = explode('_', $plugin->component, 2);
 	$package = new stdClass();
 	$package->name = 'moodle-plugin-db/' . $plugin->component;
 	$package->description = $plugin->name;
@@ -29,12 +34,12 @@ foreach ($pluginlist->plugins as $key => $plugin) {
 	foreach ($plugin->versions as $version) {
 		$versionpackage = clone($package);
 		$versionpackage->version = $version->version;
-		$versionpackage->type = 'moodle-plugin';
+		$versionpackage->type = 'moodle-' . $plugintype;
 		$dist = new stdClass();
 		$dist->url = $version->downloadurl;
 		$dist->type = 'zip';
 		$versionpackage->dist = $dist;
-		$versionpackage->require = ['moodle-plugin-db/installer' => '*'];
+		$versionpackage->require = ['composer/installers' => '*'];
 		if ($addcorerequires) {
     		$supportedmoodles = [];
     		foreach ($version->supportedmoodles as $supportedmoodle) {
@@ -42,6 +47,7 @@ foreach ($pluginlist->plugins as $key => $plugin) {
     		}
     		$versionpackage->require['moodle-plugin-db/moodle'] = implode('||', $supportedmoodles);
 		}
+		$versionpackage->extra = ['installer-name' => $pluginname];
     	$packageversions[$version->version] = $versionpackage;
 	}
 	$repo->packages[$package->name] = $packageversions;
@@ -84,7 +90,7 @@ foreach ($coremaxversions as $major => $max) {
         $dist->url = $corebase . "/$directory/$filename";
         $dist->type = 'zip';
         $versionpackage->dist = $dist;
-        $versionpackage->require = ['moodle-plugin-db/installer' => '*'];
+        $versionpackage->require = ['composer/installers' => '*'];
         $packageversions[$versionno] = $versionpackage;
     }
 }
