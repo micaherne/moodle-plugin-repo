@@ -41,3 +41,5 @@ to be sorted out before something like this could be used sensibly.
 4. We have to use a custom installer to get the plugin into the right directory (which is one of the reasons #3 doesn't work).
 5. To install into an existing Moodle download (which is kind of the idea), you need to edit the composer.json file, which is a core Moodle file. Alternatively, you need to mess around with the COMPOSER environment variable to use a different filename.
 6. There's no actual dependency management, so you have to work out the relevant versions yourself.
+7. We can't check the MD5 of the download to ensure its integrity.
+8. The plugin database doesn't appear to have explicit license information, so we can't expose it in the repo.
