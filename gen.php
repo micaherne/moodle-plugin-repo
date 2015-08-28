@@ -5,6 +5,7 @@ $corebase = "https://download.moodle.org/download.php/direct";
 $localapi = __DIR__ . '/pluglist.json';
 $packagesfile = __DIR__ . '/packages.json';
 
+$skipcore = in_array('--skip-core', $argv);
 $addcorerequires = in_array('--add-core-requires', $argv);
 
 if (!file_exists($localapi)) {
@@ -53,6 +54,12 @@ foreach ($pluginlist->plugins as $key => $plugin) {
 	$repo->packages[$package->name] = $packageversions;
 }
 
+// Finish if we don't want core
+if ($skipcore) {
+	file_put_contents($packagesfile, json_encode($repo));
+	exit(0);
+}
+
 $coremaxversions = [
     '2.9' => 1,
     '2.8' => 7,
@@ -71,7 +78,7 @@ $coremaxversions = [
 ];
 
 $package = new stdClass();
-$package->name = 'moodle-plugin-db/moodle';
+$package->name = 'moodle/moodle';
 $packageversions = [];
 foreach ($coremaxversions as $major => $max) {
     for ($i = $max; $i >= 0; $i--) {
