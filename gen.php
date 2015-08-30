@@ -46,7 +46,7 @@ foreach ($pluginlist->plugins as $key => $plugin) {
     		foreach ($version->supportedmoodles as $supportedmoodle) {
     		    $supportedmoodles[] = $supportedmoodle->release . '.*';
     		}
-    		$versionpackage->require['moodle-plugin-db/moodle'] = implode('||', $supportedmoodles);
+    		$versionpackage->require['moodle/moodle'] = implode('||', $supportedmoodles);
 		}
 		$versionpackage->extra = ['installer-name' => $pluginname];
     	$packageversions[$version->version] = $versionpackage;
@@ -60,6 +60,9 @@ if ($skipcore) {
 	exit(0);
 }
 
+// composer.json was only introduced in 2.3.4, so doing create-project with
+// earlier versions will confuse composer, although the core project will
+// still be created.
 $coremaxversions = [
     '2.9' => 1,
     '2.8' => 7,
