@@ -40,7 +40,7 @@ The repository can also be used to get an existing Moodle release as the basis f
 ## Core dependency management
 *(Be warned - this is even more experimental than the previous repo!)*
 
-There is a second repository at http://micaherne.github.io/moodle-plugin-repo/with-core-deps which declares dependencies on core Moodle versions for each plugin, based on the supported Moodle versions listed in the Moodle plugin database. Where a version is not specified in the require statement (as in 4 of the 5 in the example above), Composer will attempt to resolve the latest version of the plugin that supports your Moodle version.
+There is a second repository at [http://micaherne.github.io/moodle-plugin-repo/with-core-deps](http://micaherne.github.io/moodle-plugin-repo/with-core-deps) which declares dependencies on core Moodle versions for each plugin, based on the supported Moodle versions listed in the Moodle plugin database. Where a version is not specified in the require statement (as in 4 of the 5 in the example above), Composer will attempt to resolve the latest version of the plugin that supports your Moodle version.
 
 Unfortunately, because Moodle's composer.json contains no name or version information by default (see [MDL-48114](https://tracker.moodle.org/browse/MDL-48114)), this must be manually entered into your composer.json:
 
