@@ -19,3 +19,5 @@ There are a number of problems with the current repository:
 6. We can't check the MD5 of the download to ensure its integrity.
 
 7. The plugin database doesn't appear to have explicit license information, so we can't expose it in the repo.
+
+Also, it's important to note that this repository was generated from the plugin database at a specific point in time, and won't necessarily (ever) be updated. If this proof-of-concept turns out to be a useful and/or popular idea, I'd hope HQ could be convinced to build the repository into the Moodle plugins database itself.
