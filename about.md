@@ -50,6 +50,8 @@ Unfortunately, because Moodle's composer.json contains no name or version inform
       "version": "2.5.6"
     }
 
+Ensure the name is completely correct, otherwise you will end up with a second copy of Moodle in your vendor directory!
+
 ## Troubleshooting
 
 ### My plugin installs under the vendor directory instead of in the correct plugin location
