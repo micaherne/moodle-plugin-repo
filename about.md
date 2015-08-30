@@ -8,7 +8,7 @@ This is an experimental [Composer](https://getcomposer.org) repository for [Mood
 its [plugin database](https://moodle.org/plugins/).
 
 ## Usage
-_The following assumes fairly good knowledge of Composer: what it's for; how to create a composer.json file; how to install and update your dependencies._
+_The following assumes fairly good knowledge of Composer: what it's for; how to create and manage a composer.json file; how to install and update your dependencies._
 
 ### Plugin installation
 To manage Moodle plugins within a Moodle installation, add the repository to the composer.json file, in the "[repositories](https://getcomposer.org/doc/04-schema.md#repositories)" section.
@@ -30,7 +30,7 @@ You can now install plugins from the Moodle plugin database by adding them to th
         "moodle-plugin-db/mod_attendance": "*"
     }
 
-The vendor is always "moodle-plugin-db", the package name is the component name from the Moodle plugin database, and the version is the 10-digit version build number from the plugin database.
+The vendor is always "moodle-plugin-db", the package name is the component name from the Moodle plugin database, and the version is the 10-digit version build number from the plugin database. Note that this repository contains no dependency declarations for the Moodle plugins, so "*" will always install the latest version of the plugin, regardless of whether or not it is compatible with your base Moodle version.
 
 ### Core Moodle installation
 The repository can also be used to get an existing Moodle release as the basis for an installation. Use the composer [create-project](https://getcomposer.org/doc/03-cli.md#create-project) command, for example:
@@ -49,3 +49,28 @@ Unfortunately, because Moodle's composer.json contains no name or version inform
       "description": "Moodle",
       "version": "2.5.6"
     }
+
+## Troubleshooting
+
+### My plugin installs under the vendor directory instead of in the correct plugin location
+This repository depends on the [composer/installers](https://github.com/composer/installers) Moodle helper to put the code in the correct place. Unfortunately, this does not currently support all the Moodle core plugin types, in particular atto plugins, which feature quite prominently in the plugins database. I have submitted a pull request to add these but until this ends up in a released version it may be necessary to use the patched version.
+
+Add the forked repository to your composer.json:
+
+    "repositories": [
+        {
+          "type": "vcs",
+          "url":  "https://github.com/micaherne/installers.git"
+        }
+    ]
+
+and require the branch with all the plugin types:
+
+    "require": {
+        "composer/installers": "dev-add-moodle-types"
+    }
+
+This also may need "minimum-stability" to be set to "dev".
+
+### My plugin installs in the correct place but contains a nested subdirectory of the same name
+This seems to happen when the download zip file from the Moodle plugin repository contains multiple root folders. I have only ever seen this with some Mac-specific \_\_MACOSX folders, and am not aware of any workaround.
