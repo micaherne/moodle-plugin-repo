@@ -53,7 +53,7 @@ Unfortunately, because Moodle's composer.json contains no name or version inform
 ## Troubleshooting
 
 ### My plugin installs under the vendor directory instead of in the correct plugin location
-This repository depends on the [composer/installers](https://github.com/composer/installers) Moodle helper to put the code in the correct place. Unfortunately, this does not currently support all the Moodle core plugin types, in particular atto plugins, which feature quite prominently in the plugins database. I have submitted a pull request to add these but until this ends up in a released version it may be necessary to use the patched version.
+This repository depends on the [composer/installers](https://github.com/composer/installers) Moodle helper to put the code in the correct place. Unfortunately, this does not currently support all the Moodle core plugin types, in particular atto plugins, which feature quite prominently in the plugins database. I have submitted a [pull request](https://github.com/composer/installers/pull/260) to add these but until this ends up in a released version it may be necessary to use the patched version.
 
 Add the forked repository to your composer.json:
 
