@@ -33,6 +33,10 @@ foreach ($pluginlist->plugins as $key => $plugin) {
 	$package->description = $plugin->name;
 	$packageversions = [];
 	foreach ($plugin->versions as $version) {
+
+        if (!is_numeric($version->version) || strlen($version->version) != 10) {
+            continue;
+        }
 		$versionpackage = clone($package);
 		$versionpackage->version = $version->version;
 		$versionpackage->type = 'moodle-' . $plugintype;
