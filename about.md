@@ -47,7 +47,16 @@ Unfortunately, because Moodle's composer.json contains no name or version inform
     {
       "name": "moodle/moodle",
       "description": "Moodle",
-      "version": "2.5.6"
+      "version": "2.5.6",
+      "repositories":[
+      {
+        "type": "composer",
+        "url":  "http://micaherne.github.io/moodle-plugin-repo/with-core-deps/"
+      }
+      ],
+      "require":{
+        "moodle-plugin-db/mod_certificate":"*"
+      }
     }
 
 Ensure the name is completely correct, otherwise you will end up with a second copy of Moodle in your vendor directory!
